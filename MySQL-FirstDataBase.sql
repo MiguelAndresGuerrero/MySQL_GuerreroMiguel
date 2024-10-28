@@ -1,30 +1,54 @@
-CREATE DATABASE miDataBase;
+CREATE DATABASE BaseDatos;
 
-USE miDataBase;
+USE BaseDatos;
 
-create table Clientes(id_Clientes INT PRIMARY KEY, 
-Nombre varchar(50),
-Correo varchar(40),
-Telefono int,
-Direccion varchar(50)
-);
+CREATE TABLE Clientes(
+id_Clientes INT not null, 
+Nombre varchar(40) not null,
+Correo varchar(40) not null,
+Telefono int not null,
+Direccion varchar(50),
+primary key (id_Clientes)
+) engine=InnoDB;
 
-create table Libros(id_Libros INT PRIMARY KEY, 
-Categoria varchar(30),
+CREATE TABLE Libros(
+id_Libros INT NOT NULL,
+Titulo varchar(30),
 Editorial varchar(40),
-ISBN varchar(40),
-Fecha_publicacion date
-);
-
-create table AUTORES(id_Autores INT PRIMARY KEY, 
 Categoria varchar(30),
-Editorial varchar(40),
 ISBN varchar(40),
-Fecha_publicacion date
+Fecha_publicacion date,
+Precio int,
+Cantidad_Stock int,
+PRIMARY KEY (id_Libros)
+) engine=InnoDB;
+
+CREATE TABLE Autores(
+id_Autores INT PRIMARY KEY, 
+Nombre varchar(30),
+Nacionalidad varchar(40),
+Fecha_nacimiento date,
+id_libros int
 );
 
+CREATE TABLE Pedidos(
+id_Pedidos INT PRIMARY KEY, 
+Numero_libros varchar(30),
+Fecha_compra date,
+id_Clientes int
+);
+
+CREATE TABLE Transacciones(
+id_Transacciones INT PRIMARY KEY,
+id_Pedido int,
+id_Banco int,
+Total_pagado INT
+);
 
 describe Clientes;
 describe Libros;
+describe Autores;
+describe Pedidos;
+describe Transacciones;
 
 SHOW TABLES;
